@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f3ef">
+  <meta name="description" content="Joseph Brown is a Manchester-based software engineering student building clear, responsive websites for small businesses across Greater Manchester.">
+  <title>Joseph Brown | Web Design & Development</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f4f3ef;
+      --paper: #fffefa;
+      --ink: #202522;
+      --muted: #68716b;
+      --line: #d9ddd6;
+      --accent: #245b4b;
+      --accent-dark: #173f34;
+      --accent-pale: #e3ece6;
+      --warm: #d9a66f;
+      --display: "Manrope", sans-serif;
+      --body: "DM Sans", sans-serif;
+      --mono: "DM Mono", monospace;
+      --width: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--warm);
+      outline-offset: 4px;
+    }
+    .wrap { width: min(var(--width), calc(100% - 48px)); margin: 0 auto; }
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--accent);
+      font: 500 11px/1.4 var(--mono);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { font-family: var(--display); line-height: 1.08; letter-spacing: -.045em; }
+    h1 { font-size: clamp(3.2rem, 8vw, 7.3rem); font-weight: 800; }
+    h2 { font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 700; }
+    h3 { font-size: 1.35rem; font-weight: 700; }
+    .muted { color: var(--muted); }
+    .section { padding: 100px 0; border-top: 1px solid var(--line); }
+    .section-heading { max-width: 700px; margin-bottom: 42px; }
+    .section-heading h2 { margin-bottom: 16px; }
+    .section-heading p:last-child { max-width: 590px; margin-bottom: 0; color: var(--muted); }
+
+    /* Navigation */
+    .site-header {
+      position: sticky;
+      z-index: 20;
+      top: 0;
+      background: rgba(244,243,239,.92);
+      border-bottom: 1px solid rgba(217,221,214,.85);
+      backdrop-filter: blur(14px);
+    }
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      font: 800 19px var(--display);
+      text-decoration: none;
+      letter-spacing: -.05em;
+      white-space: nowrap;
+    }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 27px; }
+    .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links .nav-cta { color: var(--accent); }
+
+    /* Hero */
+    .hero { padding: clamp(76px, 11vw, 150px) 0 92px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(230px, .6fr);
+      align-items: end;
+      gap: 54px;
+    }
+    .hero h1 { max-width: 900px; margin-bottom: 27px; }
+    .hero h1 em { color: var(--accent); font-style: normal; }
+    .hero-copy {
+      max-width: 650px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+    }
+    .hero-aside {
+      padding: 23px 0 4px 24px;
+      border-left: 1px solid var(--line);
+    }
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 18px;
+      color: var(--accent);
+      font: 500 11px var(--mono);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .availability::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4d9871;
+      box-shadow: 0 0 0 4px #4d98711c;
+    }
+    .hero-aside p { margin-bottom: 0; color: var(--muted); font-size: 14px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 34px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 49px;
+      padding: 0 21px;
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      background: var(--accent);
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background .2s ease, transform .2s ease;
+    }
+    .button:hover { background: var(--accent-dark); transform: translateY(-2px); }
+    .button.secondary { background: transparent; color: var(--accent); }
+    .button.secondary:hover { background: var(--accent-pale); }
+
+    .trust-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 34px;
+      padding: 23px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font: 11px var(--mono);
+      letter-spacing: .035em;
+      text-transform: uppercase;
+    }
+    .trust-strip span::before { content: "—"; margin-right: 10px; color: var(--accent); }
+
+    /* Projects */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 38px 26px;
+    }
+    .project { min-width: 0; }
+    .project-preview {
+      min-height: 270px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #e8e9e2;
+    }
+    .project-preview.dark { background: #253a34; }
+    .browser {
+      width: min(100%, 430px);
+      overflow: hidden;
+      border: 1px solid #d8ddd6;
+      border-radius: 6px;
+      background: #fffefa;
+      box-shadow: 0 18px 45px #17251d20;
+      transform: rotate(-1deg);
+    }
+    .browser-top {
+      height: 27px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 0 10px;
+      border-bottom: 1px solid #e5e7e2;
+      background: #f7f8f5;
+    }
+    .browser-top i { width: 6px; height: 6px; border-radius: 50%; background: #c7cec7; }
+    .browser-top span { margin-left: 7px; color: #8a938c; font: 9px var(--mono); }
+    .poll-ui { padding: 22px; color: #26312b; }
+    .mock-label { color: #78837b; font: 9px var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+    .poll-ui h4 { margin: 9px 0 15px; font: 700 18px var(--display); letter-spacing: -.04em; }
+    .poll-option { margin: 9px 0; }
+    .poll-option div:first-child { display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 10px; }
+    .track { height: 7px; overflow: hidden; border-radius: 9px; background: #e9ede8; }
+    .track b { display: block; height: 100%; border-radius: inherit; background: #477b63; }
+    .shop-ui { padding: 18px; color: #26312b; }
+    .shop-head { display: flex; justify-content: space-between; margin-bottom: 14px; font: 700 12px var(--display); }
+    .shop-head span { color: #477b63; font: 10px var(--mono); }
+    .shop-products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
+    .shop-product .product-art { height: 75px; border-radius: 3px; background: #e7e9e2; }
+    .shop-product:nth-child(2) .product-art { background: #d9e4dc; }
+    .shop-product:nth-child(3) .product-art { background: #eee1d3; }
+    .shop-product b { display: block; margin-top: 7px; font-size: 9px; }
+    .shop-product small { color: #78837b; font-size: 8px; }
+    .charity-ui { padding: 17px; color: #26312b; }
+    .charity-nav { display: flex; justify-content: space-between; font-size: 9px; font-weight: 700; }
+    .charity-hero { margin-top: 14px; min-height: 145px; padding: 18px; display: flex; flex-direction: column; justify-content: end; background: #dce8dd; }
+    .charity-hero strong { max-width: 220px; font: 800 23px/1.05 var(--display); letter-spacing: -.05em; }
+    .charity-hero span { width: max-content; margin-top: 10px; padding: 5px 9px; background: #315d49; color: white; font-size: 8px; }
+    .preview-caption {
+      position: absolute;
+      right: 12px;
+      bottom: 10px;
+      color: #68716b;
+      font: 9px var(--mono);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .project-meta { display: flex; justify-content: space-between; gap: 10px; margin: 18px 0 8px; }
+    .project-meta .eyebrow { margin: 0; }
+    .project-type { color: var(--muted); font: 10px var(--mono); text-transform: uppercase; }
+    .project h3 { margin-bottom: 9px; }
+    .project p { max-width: 570px; margin-bottom: 15px; color: var(--muted); font-size: 14px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .tags span {
+      padding: 4px 8px;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      color: #56615a;
+      font: 10px var(--mono);
+    }
+    .project-note {
+      margin-top: 34px;
+      padding: 17px 20px;
+      border-left: 3px solid var(--accent);
+      background: var(--accent-pale);
+      color: #43564a;
+      font-size: 13px;
+    }
+
+    /* Services */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+    .service {
+      min-height: 190px;
+      padding: 27px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .service-number { color: var(--accent); font: 11px var(--mono); }
+    .service h3 { margin: 17px 0 9px; }
+    .service p { max-width: 440px; margin-bottom: 0; color: var(--muted); font-size: 14px; }
+
+    /* Approach */
+    .approach-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; }
+    .approach-grid h2 { max-width: 440px; }
+    .steps { border-top: 1px solid var(--line); }
+    .step {
+      display: grid;
+      grid-template-columns: 46px 1fr;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .step-number { color: var(--accent); font: 12px var(--mono); padding-top: 4px; }
+    .step h3 { margin-bottom: 6px; font-size: 18px; letter-spacing: -.025em; }
+    .step p { margin-bottom: 0; color: var(--muted); font-size: 14px; }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 70px; align-items: start; }
+    .about-copy p { max-width: 620px; color: var(--muted); }
+    .about-copy p:first-of-type { color: var(--ink); font-size: 18px; }
+    .facts { border-top: 1px solid var(--line); }
+    .fact {
+      display: grid;
+      grid-template-columns: 105px 1fr;
+      gap: 12px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+    }
+    .fact dt { color: var(--muted); font: 10px var(--mono); text-transform: uppercase; }
+    .fact dd { margin: 0; }
+
+    /* Contact */
+    .contact-panel {
+      padding: clamp(28px, 6vw, 65px);
+      border-radius: 7px;
+      background: #203c32;
+      color: #fffefa;
+    }
+    .contact-panel .eyebrow { color: #b8d2c1; }
+    .contact-panel h2 { max-width: 720px; margin-bottom: 18px; }
+    .contact-panel > p:not(.eyebrow) { max-width: 580px; color: #d0ddd4; }
+    .contact-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 27px; }
+    .contact-panel .button { border-color: #fffefa; background: #fffefa; color: #203c32; }
+    .contact-panel .button:hover { background: #e5eee7; }
+    .contact-panel .button.secondary { border-color: #91ad9b; background: transparent; color: white; }
+    .contact-panel .button.secondary:hover { background: #ffffff12; }
+    footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 28px 0 38px;
+      color: var(--muted);
+      font: 10px var(--mono);
+    }
+    footer a { text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 36px, var(--width)); }
+      .nav { min-height: 68px; align-items: flex-start; flex-direction: column; justify-content: center; gap: 7px; padding: 12px 0; }
+      .nav-links { width: 100%; gap: 19px; overflow-x: auto; padding-bottom: 2px; }
+      .nav-links a { white-space: nowrap; font-size: 12px; }
+      .hero { padding-top: 75px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 30px; }
+      .hero-aside { max-width: 430px; padding: 0 0 0 17px; }
+      .trust-strip { gap: 10px 20px; font-size: 9px; }
+      .section { padding: 72px 0; }
+      .projects { grid-template-columns: 1fr; gap: 34px; }
+      .project-preview { min-height: 245px; }
+      .service-grid { grid-template-columns: 1fr; }
+      .service { min-height: 0; padding: 23px; }
+      .approach-grid, .about-grid { grid-template-columns: 1fr; gap: 30px; }
+      .approach-grid h2 { max-width: 600px; }
+    }
+    @media (max-width: 420px) {
+      .wrap { width: calc(100% - 30px); }
+      h1 { font-size: clamp(2.8rem, 15vw, 4.2rem); }
+      .project-preview { min-height: 220px; padding: 16px; }
+      .fact { grid-template-columns: 88px 1fr; }
+      .contact-actions { align-items: stretch; flex-direction: column; }
+      .contact-actions .button { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="Joseph Brown home">JOSEPH BROWN<span>.</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#approach">How I work</a>
+        <a href="#about">About</a>
+        <a class="nav-cta" href="#contact">Contact ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">Web design & development · Manchester</p>
+          <h1>Good websites.<br><em>Built properly.</em></h1>
+          <p class="hero-copy">
+            I'm Joseph, a software engineering student and web developer based in Manchester.
+            I build straightforward, responsive websites that help small businesses present
+            themselves clearly and make it easy for customers to get in touch.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="#contact">Discuss a project ↗</a>
+            <a class="button secondary" href="#work">View selected work</a>
+          </div>
+        </div>
+        <aside class="hero-aside">
+          <span class="availability">Open to selected projects</span>
+          <p>
+            A direct point of contact from the first conversation to launch.
+            Clear scope, honest advice and no unnecessary jargon.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <div class="wrap trust-strip" aria-label="Working principles">
+      <span>Built around your business</span>
+      <span>Responsive by design</span>
+      <span>Clear communication</span>
+      <span>Careful handover</span>
+    </div>
+
+    <section class="section" id="work">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">Selected work</p>
+          <h2>A few things I've built.</h2>
+          <p>
+            A selection of university and college projects. They demonstrate my approach
+            to layout, front-end development, functionality and working with other people.
+            I'm adding independently commissioned work as I take on projects.
+          </p>
+        </div>
+
+        <div class="projects">
+          <article class="project">
+            <div class="project-preview">
+              <div class="browser" aria-hidden="true">
+                <div class="browser-top"><i></i><i></i><i></i><span>student-polls / home</span></div>
+                <div class="poll-ui">
+                  <div class="mock-label">Community poll · Student life</div>
+                  <h4>What should campus improve next?</h4>
+                  <div class="poll-option"><div><span>More study spaces</span><b>48%</b></div><div class="track"><b style="width:48%"></b></div></div>
+                  <div class="poll-option"><div><span>Later library hours</span><b>29%</b></div><div class="track"><b style="width:29%"></b></div></div>
+                  <div class="poll-option"><div><span>Cheaper food</span><b>16%</b></div><div class="track"><b style="width:16%"></b></div></div>
+                </div>
+              </div>
+              <span class="preview-caption">Illustrative project preview</span>
+            </div>
+            <div class="project-meta"><span class="eyebrow">01 / Collaborative project</span><span class="project-type">University</span></div>
+            <h3>Student opinion polling app</h3>
+            <p>
+              A group-built web application where students can publish questions, share polls
+              and upvote responses. I worked as Product Owner in a six-person team, using
+              GitHub to coordinate development and presenting the finished project.
+            </p>
+            <div class="tags"><span>JavaScript</span><span>HTML / CSS</span><span>Git / GitHub</span><span>Team of 6</span></div>
+          </article>
+
+          <article class="project">
+            <div class="project-preview">
+              <div class="browser" aria-hidden="true">
+                <div class="browser-top"><i></i><i></i><i></i><span>shop / products</span></div>
+                <div class="shop-ui">
+                  <div class="shop-head">EVERYDAY GOODS <span>BAG (2)</span></div>
+                  <div class="shop-products">
+                    <div class="shop-product"><div class="product-art"></div><b>Product one</b><small>£18.00</small></div>
+                    <div class="shop-product"><div class="product-art"></div><b>Product two</b><small>£24.00</small></div>
+                    <div class="shop-product"><div class="product-art"></div><b>Product three</b><small>£12.00</small></div>
+                  </div>
+                </div>
+              </div>
+              <span class="preview-caption">Illustrative project preview</span>
+            </div>
+            <div class="project-meta"><span class="eyebrow">02 / Front-end development</span><span class="project-type">University</span></div>
+            <h3>E-commerce front-end</h3>
+            <p>
+              A product-focused website built with HTML, CSS and JavaScript. The add-to-cart
+              functionality lets users select products and see their basket update as they shop.
+            </p>
+            <div class="tags"><span>HTML / CSS</span><span>JavaScript</span><span>DOM</span><span>Responsive layout</span></div>
+          </article>
+
+          <article class="project">
+            <div class="project-preview dark">
+              <div class="browser" aria-hidden="true">
+                <div class="browser-top"><i></i><i></i><i></i><span>community / welcome</span></div>
+                <div class="charity-ui">
+                  <div class="charity-nav"><span>COMMUNITY PROJECT</span><span>ABOUT&nbsp;&nbsp; CONTACT</span></div>
+                  <div class="charity-hero">
+                    <strong>Making a difference, together.</strong>
+                    <span>FIND OUT MORE ↗</span>
+                  </div>
+                </div>
+              </div>
+              <span class="preview-caption" style="color:#d9e2dc">Illustrative project preview</span>
+            </div>
+            <div class="project-meta"><span class="eyebrow">03 / Website design</span><span class="project-type">College</span></div>
+            <h3>Charity website</h3>
+            <p>
+              A simple charity website created during my T-Level in Digital Support Services,
+              using HTML and CSS to organise information and make key details easy to find.
+            </p>
+            <div class="tags"><span>HTML / CSS</span><span>Page structure</span><span>College project</span></div>
+          </article>
+
+          <article class="project">
+            <div class="project-preview">
+              <div class="browser" aria-hidden="true">
+                <div class="browser-top"><i></i><i></i><i></i><span>database / records</span></div>
+                <div class="poll-ui">
+                  <div class="mock-label">Database design</div>
+                  <h4>Structured data. Useful information.</h4>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px">
+                    <div style="padding:12px;background:#e7eee8;border-radius:3px;font-size:10px"><b>ANIMALS</b><br><span style="color:#78837b">Animal ID · Owner ID</span></div>
+                    <div style="padding:12px;background:#f0e9df;border-radius:3px;font-size:10px"><b>OWNERS</b><br><span style="color:#78837b">Owner ID · Contact</span></div>
+                    <div style="padding:12px;background:#f0e9df;border-radius:3px;font-size:10px"><b>APPOINTMENTS</b><br><span style="color:#78837b">Date · Animal ID</span></div>
+                    <div style="padding:12px;background:#e7eee8;border-radius:3px;font-size:10px"><b>STAFF</b><br><span style="color:#78837b">Staff ID · Role</span></div>
+                  </div>
+                </div>
+              </div>
+              <span class="preview-caption">Illustrative project preview</span>
+            </div>
+            <div class="project-meta"><span class="eyebrow">04 / Database design</span><span class="project-type">College</span></div>
+            <h3>Veterinary practice database</h3>
+            <p>
+              A database project involving entity relationships, structured records and SQL.
+              It helped build my understanding of how well-designed data supports a working system.
+            </p>
+            <div class="tags"><span>SQL</span><span>ERD design</span><span>Relational databases</span></div>
+          </article>
+        </div>
+
+        <div class="project-note">
+          These previews are illustrative recreations, not screenshots of live websites.
+          The projects listed are academic work rather than paid client commissions.
+          Live demos and source-code links will be added here as they are ready to share.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">What I can help with</p>
+          <h2>Useful websites, without the fuss.</h2>
+          <p>
+            A focused service for small businesses and independent operators who need a
+            professional online presence, or want to improve a site they already have.
+          </p>
+        </div>
+        <div class="service-grid">
+          <article class="service">
+            <span class="service-number">01 / NEW WEBSITE</span>
+            <h3>Small business websites</h3>
+            <p>A clean, professional website that explains what you do, builds confidence and makes it simple for potential customers to contact you.</p>
+          </article>
+          <article class="service">
+            <span class="service-number">02 / LANDING PAGES</span>
+            <h3>Landing pages</h3>
+            <p>A focused page for a service, campaign or new business, with clear information and a straightforward route to enquire.</p>
+          </article>
+          <article class="service">
+            <span class="service-number">03 / IMPROVEMENTS</span>
+            <h3>Website updates</h3>
+            <p>Help with layout, mobile presentation, content changes and front-end fixes for an existing website.</p>
+          </article>
+          <article class="service">
+            <span class="service-number">04 / FUNCTIONALITY</span>
+            <h3>Practical features</h3>
+            <p>Enquiry forms, contact links, simple interactive elements and other features that make a site more useful.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="approach">
+      <div class="wrap approach-grid">
+        <div>
+          <p class="eyebrow">A straightforward process</p>
+          <h2>Know what you're getting, at every stage.</h2>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <span class="step-number">01</span>
+            <div><h3>Talk through the idea</h3><p>We discuss your business, what the website needs to do and any examples or existing material you have.</p></div>
+          </article>
+          <article class="step">
+            <span class="step-number">02</span>
+            <div><h3>Agree the scope</h3><p>I'll outline the pages, features, timescale and price before any work begins. No surprise extras.</p></div>
+          </article>
+          <article class="step">
+            <span class="step-number">03</span>
+            <div><h3>Design and build</h3><p>I'll develop the site, share progress and make agreed refinements as we go.</p></div>
+          </article>
+          <article class="step">
+            <span class="step-number">04</span>
+            <div><h3>Launch and handover</h3><p>We'll check the finished site together and I'll explain how to use or update the parts we've agreed.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">A little about me</p>
+          <h2>Technical thinking. Practical experience.</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-copy">
+            <p>
+              I'm studying BSc (Hons) Software Engineering at Manchester Metropolitan
+              University, where I achieved a First Class result in my first year.
+              I enjoy building things that are useful, straightforward and well put together.
+            </p>
+            <p>
+              Before university, I spent around a year on an IT support placement at
+              Cromwell Tools, supporting a business with more than 1,000 staff. I handled
+              user issues, hardware and software troubleshooting, device setup and some
+              second-line tasks.
+            </p>
+            <p>
+              That experience taught me to listen carefully, explain technical issues clearly
+              and keep people updated. I bring the same approach to website projects:
+              understand the problem first, agree what needs doing and communicate throughout.
+            </p>
+          </div>
+          <dl class="facts">
+            <div class="fact"><dt>Studying</dt><dd>BSc (Hons) Software Engineering, Manchester Metropolitan University</dd></div>
+            <div class="fact"><dt>First year</dt><dd>First Class result</dd></div>
+            <div class="fact"><dt>Development</dt><dd>HTML, CSS, JavaScript, Java, Python</dd></div>
+            <div class="fact"><dt>Data</dt><dd>SQL, relational databases, ERD design</dd></div>
+            <div class="fact"><dt>Tools</dt><dd>Git, GitHub, Linux, Apache, Active Directory</dd></div>
+            <div class="fact"><dt>Experience</dt><dd>IT support placement at Cromwell Tools</dd></div>
+            <div class="fact"><dt>Based</dt><dd>Manchester, working across Greater Manchester</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="wrap">
+        <div class="contact-panel">
+          <p class="eyebrow">Have a project in mind?</p>
+          <h2>Let's make your website work harder.</h2>
+          <p>
+            Tell me a little about your business and what you need. I'll get back to you
+            to discuss whether I can help and what the next step would look like.
+          </p>
+          <div class="contact-actions">
+            <a class="button" href="mailto:josephthomsbrown07@gmail.com?subject=Website%20project%20enquiry">Email me ↗</a>
+            <a class="button secondary" href="https://www.linkedin.com/in/joseph-brown-169aa429b/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <span>© <span id="year">2026</span> Joseph Brown</span>
+    <span>Designed and built by Joseph Brown</span>
+    <a href="#top">Back to top ↑</a>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
